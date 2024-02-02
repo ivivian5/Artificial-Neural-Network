@@ -1,0 +1,62 @@
+Assignment: A6 - Radar Trace Classifier
+Author: Vivian Lau (vlau02)
+Date: 12.20.2023
+-----------------------------------------------------------------------------------
+
+NOTE: Assignment used a 4-day extension granted by the Professor
+
+-----------------------------------------------------------------------------------
+How to Run:
+-----------------------------------------------------------------------------------
+    python3 main.py
+    
+(Note) needs user input for the attributes of plants that is need classification
+    after the model is trained.
+
+-----------------------------------------------------------------------------------
+Assumptions:
+-----------------------------------------------------------------------------------
+    training file has 150 lines of data where each line is comprised of the
+        attributes in order of Sepal length, Sepal width, Petal length, Petal 
+        width, and Class.
+
+-----------------------------------------------------------------------------------
+Files:
+-----------------------------------------------------------------------------------
+        Artificial_Neural_Network.py - Uses the training data to train the model
+                using the back-propagation algorithm with hidden layers.
+    ...............................................................................
+        main.py - Reads in training data to give model to train and then prompts 
+                user for input of attributes of iris plant to be classified using
+                artificial neural network model.
+
+-----------------------------------------------------------------------------------
+Solution Structure:
+
+The ANN model first preps by shuffling the data into training, validation, and 
+testing sets. I use a 0.6/0.2/0.2 ratio respectively because this is small dataset. 
+Then I set the layers to include some hidden layers and the weights randomly. I did 
+some testing and determined the number of hidden layers through experimenting.
+
+When I train the model I run it for a user specified max number of runs, but cut it
+off early if I find that the validation data accuracy shows that the model is being
+overtrained. Each run builds a model from the previous weights and improves the
+weight values to predict more accurately after each iteration of forward propagation
+by offsetting bias with backwared propagation on the difference between what the
+model predicts and our desired class for the plant. This combination of forward and
+backward propagation is run for each node in our training set before we test our
+model on the validation test. Finally we test our model on the final testing set
+which determines our accuracy of our model in predicting the iris class types for
+a plant with the given attributes. This testing accuracy can be seen to be always
+above 0.93, and stays around 0.95-0.97 for the majority of runs. Each run of the
+model will produce different results as the model randomly chooses which data point
+will be used in each set (training, validation, and testing) as well as the weights
+being randomly chosen from the start may have a effect to how the model trains to
+identify the class of the plant.
+
+Finally, the user input of determining a plants classification based on its
+attributes does pretty well, but can be seen does much worse in differentiating
+the versicolor and viriginia classifications. If I were to change this assignment
+I would want to add how confident the model is in its prediction.
+
+-----------------------------------------------------------------------------------
